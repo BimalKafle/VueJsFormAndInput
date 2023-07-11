@@ -5,7 +5,7 @@
 
     <label>Password</label>
     <input type="password" required v-model="Password"/>
-
+    <div v-if="PasswordError" class="error">{{PasswordError}}</div>
     <label>Role</label>
     <select v-model="Role">
         <option value="Webdeveloper">Web developer</option>
@@ -49,7 +49,8 @@ export default {
             Role:'',
             Terms:false,
             tempSkill:'',
-            skills:[]
+            skills:[],
+            PasswordError:''
         }
     },
     methods:{
@@ -71,7 +72,7 @@ export default {
             )
         },
         validateForm(){
-            console.log("Form validation");
+            this.PasswordError=this.Password.length>6 ?" ":"Password length must be greater than 7";
         }
     }
 }
@@ -136,5 +137,12 @@ top:2px ;
     margin-top: 20px;
     color: white;
     border-radius: 20px;
+}
+
+.error {
+    color: #ff0062;
+    margin-top: 10px;
+    font-size: 0.8em;
+    font-weight: bold;
 }
 </style>
